@@ -19,6 +19,8 @@ functions:
     timeout: 20
     memorySize: 128
     handler: dist/lambda1Function/handler.handler
+    environment:
+      QUEUE_URL: { Ref: TheQueue }
     events:
       - sqs:
           batchSize: 10
