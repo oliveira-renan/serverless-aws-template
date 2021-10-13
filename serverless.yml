@@ -21,11 +21,11 @@ functions:
     handler: dist/lambda1Function/handler.handler
     events:
       - sqs:
-        batchSize: 10
-        arn:
-          Fn::GetAtt: 
-            - lambda1ExampleQueue
-            - Arn
+          batchSize: 10
+          arn:
+            Fn::GetAtt: 
+              - lambda1ExampleQueue
+              - Arn
 
 resources:
   Resources:
