@@ -1,0 +1,17 @@
+service: aws-node-sqs-worker-project
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: '20201221'
+
+functions:
+  app:
+    handler: src/handler.handler
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'
+
+plugins:
+  - serverless-plugin-typescript
