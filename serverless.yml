@@ -12,6 +12,27 @@ functions:
     events:
       - http: ANY /
       - http: 'ANY {proxy+}'
+  
+  lambda1Example:
+    name: lambda1example
+    description: A async example for worker
+    timeout: 20
+    memorySize: 128
+    handler: dist/lambda1Function/handler.handler
+    events:
+      - sqs:
+        batchSize: 10
+        arn:
+          Fn::GetAtt: 
+            - lambda1ExampleQueue
+            - Arn
+
+resources:
+  Resources:
+    lambda1ExampleQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: lambda1-queue-function
 
 plugins:
   - serverless-plugin-typescript
